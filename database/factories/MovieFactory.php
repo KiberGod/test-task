@@ -20,7 +20,6 @@ class MovieFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'publication_status' => $this->faker->boolean,
-            'poster' => Str::uuid()->toString() . '.' . $this->faker->randomElement(['png', 'jpg']),
         ];
     }
 }
