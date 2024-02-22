@@ -48,7 +48,7 @@
 
     <br>
     @if ($movies->lastPage() > 1)
-        <nav aria-label="Page navigation example">
+        <nav>
             <ul class="pagination">
                 @foreach ($movies->getUrlRange(1, $movies->lastPage()) as $page => $url)
                     <li class="page-item {{ ($movies->currentPage() == $page) ? 'active' : '' }}">

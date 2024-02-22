@@ -15,4 +15,15 @@ class Movie extends Model
     {
         return $this->belongsToMany(Genre::class, 'genre_movie','movie_id', 'genre_id');
     }
+
+    public function setGenresByMovie($request)
+    {
+        $genreAttributes = array_filter($request->all(), function($key) {
+            return strpos($key, 'genre_') !== false;
+        }, ARRAY_FILTER_USE_KEY);
+
+        $uniqueGenres = array_unique($genreAttributes);
+
+        $this->genres()->sync($uniqueGenres);
+    }
 }
