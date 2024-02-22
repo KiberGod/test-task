@@ -11,7 +11,11 @@
 <body>
 <br>
 <div class="container">
-    <div><h3><a href="/" class="card-link">Home</a></h3></div>
+    <div class="row">
+        <div class="col-1"><h5><a href="/" class="card-link">Home</a></h5></div>
+        <div class="col-1"><h5><a href="/genres/view" class="card-link">Жанры</a></h5></div>
+        <div class="col-1"><h5><a href="/movies/view" class="card-link">Фильмы</a></h5></div>
+    </div>
     <br>
     @yield('content')
 </div>
