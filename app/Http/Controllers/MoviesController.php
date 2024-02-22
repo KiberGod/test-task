@@ -45,7 +45,7 @@ class MoviesController extends Controller
 
     public function store(MovieRequest $request)
     {
-        $movie = Movie::create($request->validated());
+        $movie = Movie::create(Movie::getRequestWithFilePath($request));
         $movie->setGenresByMovie($request);
         return redirect('/movies/view');
     }
@@ -59,8 +59,13 @@ class MoviesController extends Controller
     public function update(Movie $movie, MovieRequest $request)
     {
         $movie->setGenresByMovie($request);
-        $validatedData = $request->validated();
-        $movie->update(['title' => $validatedData['title']]);
+        $movie->update(Movie::getRequestWithFilePath($request));
         return redirect('/movies/view');
+    }
+
+    public function deletePoster(Movie $movie)
+    {
+        $movie->update(['poster' => null]);
+        return redirect()->back()->with('success');
     }
 }

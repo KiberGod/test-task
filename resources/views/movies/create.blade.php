@@ -15,7 +15,7 @@
             Создание нового фильма
         </div>
         <div class="card-body">
-            <form action="/movies/create" method="post">
+            <form action="/movies/create" method="post" enctype='multipart/form-data'>
 
                 {{csrf_field()}}
                 <div class="form-group">
@@ -30,6 +30,10 @@
                     </div>
                 </div>
 
+                <br>
+                <input name="poster" type="file" id="poster">
+
+                <br>
                 <br>
                 <div class="form-group">
                     <button class="btn btn-outline-primary" type="submit">Создать</button>

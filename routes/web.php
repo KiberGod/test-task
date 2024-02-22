@@ -51,3 +51,5 @@ Route::post('/movies/create', [MoviesController::class, 'store']);
 Route::get('/movies/edit/{movie}', [MoviesController::class, 'edit']);
 
 Route::patch('/movies/edit/{movie}', [MoviesController::class, 'update']);
+
+Route::patch('/movies/deletePoster/{movie}', [MoviesController::class, 'deletePoster']);

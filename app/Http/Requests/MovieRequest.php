@@ -24,6 +24,7 @@ class MovieRequest extends FormRequest
         return [
             'title' => 'required|max:100',
             'genre_0' => 'required',
+            'poster' => 'nullable|max:2048|mimes:jpg,bmp,png|dimensions:min_width=720,min_height=1280,max_width=720,max_height=1280',
         ];
     }
 
@@ -32,6 +33,9 @@ class MovieRequest extends FormRequest
             'title.required' => 'Название не может быть пустым',
             'title.max' => 'Название не должно превышать 100 символов',
             'genre_0' => 'Фильм должен иметь минимум 1 жанр',
+            'poster.max' => 'Максимальный размер файла - 2 МБ',
+            'poster.mimes' => 'Файл должен иметь формат PNG, JPG или BMP',
+            'poster.dimensions' => 'Файл должен иметь размер 720x1280 пикселей',
         ];
     }
 }

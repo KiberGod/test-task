@@ -18,8 +18,30 @@
         <div class="card-header">
             Редактирование фильма {{$movie->title}}
         </div>
+
+        <div class="row">
+            <div class="col-3">
+                @if($movie->poster)
+                    <img width="150" src="{{asset($movie->poster)}}">
+                @else
+                    <img width="150" src="../../src/img/default_movie_poster.png">
+                @endif
+            </div>
+            @if($movie->poster)
+                <div class="col-9">
+                    <br>
+                    <form action="/movies/deletePoster/{{$movie->id}}" method="post">
+                        {{csrf_field()}}
+                        {!! method_field('patch') !!}
+                        <button type="submit" class="btn btn-outline-danger">Удалить постер</button>
+                    </form>
+                </div>
+            @endif
+        </div>
+
+
         <div class="card-body">
-            <form action="/movies/edit/{{$movie->id}}" method="post">
+            <form action="/movies/edit/{{$movie->id}}" method="post" enctype='multipart/form-data'>
 
                 {{csrf_field()}}
                 {!! method_field('patch') !!}
@@ -36,6 +58,10 @@
                     </div>
                 </div>
 
+                <br>
+                <input name="poster" type="file" id="poster">
+
+                <br>
                 <br>
                 <div class="form-group">
                     <button class="btn btn-outline-primary" type="submit">Сохранить</button>

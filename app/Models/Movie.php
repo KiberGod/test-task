@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\MovieRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +26,18 @@ class Movie extends Model
         $uniqueGenres = array_unique($genreAttributes);
 
         $this->genres()->sync($uniqueGenres);
+    }
+
+    public static function getRequestWithFilePath(MovieRequest $request)
+    {
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('poster')) {
+            $fileName = time().$request->file('poster')->getClientOriginalName();
+            $path = $request->file('poster')->storeAs('images', $fileName, 'public');
+            $validatedData['poster'] = '/storage/'.$path;
+        }
+
+        return $validatedData;
     }
 }

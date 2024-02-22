@@ -5,7 +5,11 @@
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-2">
-                <img width="150" src="/src/img/default_movie_poster.png">
+                @if($movie->poster)
+                    <img width="150" src="{{asset($movie->poster)}}">
+                @else
+                    <img width="150" src="../../src/img/default_movie_poster.png">
+                @endif
             </div>
             <div class="col-md-8">
                 <div class="card-body">
