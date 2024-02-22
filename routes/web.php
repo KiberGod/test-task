@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenresController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/genres/view', [GenresController::class, 'index']);
+
+Route::get('/genres/create', [GenresController::class, 'create']);
+
+Route::post('/genres/create', [GenresController::class, 'store']);
+
+Route::get('/genres/view/{genre}', [GenresController::class, 'show']);
+
+Route::delete('/genres/edit/{genre}', [GenresController::class, 'destroy']);
+
+Route::get('/genres/edit/{genre}', [GenresController::class, 'edit']);
+
+Route::patch('/genres/edit/{genre}', [GenresController::class, 'update']);
