@@ -47,4 +47,16 @@ class GenresController extends Controller
         $genre->update(['name' => $validatedData['name']]);
         return redirect('/genres/view');
     }
+
+
+    public function getAllGenres()
+    {
+        return response()->json(['genres' => Genre::all()], 200);
+    }
+
+    public function getMoviesByGenre($genreId)
+    {
+        $movies = Genre::findOrFail($genreId)->movies()->paginate(10);
+        return response()->json(['movies' => $movies], 200);
+    }
 }

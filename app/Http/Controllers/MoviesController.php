@@ -68,4 +68,15 @@ class MoviesController extends Controller
         $movie->update(['poster' => null]);
         return redirect()->back()->with('success');
     }
+
+
+    public function getAllMovies()
+    {
+        return response()->json(['movies' => Movie::paginate(20)], 200);
+    }
+
+    public function getMovie($id)
+    {
+        return response()->json(['movies' => Movie::findOrFail($id)], 200);
+    }
 }

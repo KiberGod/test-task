@@ -53,3 +53,12 @@ Route::get('/movies/edit/{movie}', [MoviesController::class, 'edit']);
 Route::patch('/movies/edit/{movie}', [MoviesController::class, 'update']);
 
 Route::patch('/movies/deletePoster/{movie}', [MoviesController::class, 'deletePoster']);
+
+
+Route::get('/genres', [GenresController::class, 'getAllGenres']);
+
+Route::get('/genres/{genreId}', [GenresController::class, 'getMoviesByGenre']);
+
+Route::get('/movies', [MoviesController::class, 'getAllMovies']);
+
+Route::get('/movies/{id}', [MoviesController::class, 'getMovie']);
